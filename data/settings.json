@@ -1,24 +1,35 @@
 {
   "sidebar": [
     {
-      "section": "Introduction",
+      "section": "Docs",
       "topics": [
         {
-          "title": "Getting started",
+          "title": "✨ Getting started",
           "slug": "getting-started"
-        }
-      ]
-    },
-    {
-      "section": "Setup",
-      "topics": [
-        {
-          "title": "Theme configuration",
-          "slug": "theme-configuration"
         },
         {
-          "title": "Forestry CMS",
-          "slug": "forestry-cms"
+          "title": "👩‍💻 Accessing the services",
+          "slug": "accessing"
+        },
+        {
+          "title": "🎁 Packages",
+          "slug": "packages"
+        },
+        {
+          "slug": "transports",
+          "title": "🛡️ Secure transports"
+        },
+        {
+          "title": "🔧 Node management",
+          "slug": "node-management"
+        },
+        {
+          "title": "🔏 Signed images",
+          "slug": "signed-images"
+        },
+        {
+          "title": "🏗️ Building locally",
+          "slug": "building"
         }
       ]
     }

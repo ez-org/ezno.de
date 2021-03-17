@@ -15,4 +15,10 @@ fields:
   name: slug
   label: slug
 pages:
-- docs/editing-in-forestry.md
+- docs/accessing-the-services.md
+- docs/building-locally.md
+- docs/index.md
+- docs/node-management.md
+- docs/packages.md
+- docs/secure-transports.md
+- docs/signed-images.md

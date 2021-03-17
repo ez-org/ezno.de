@@ -1,8 +1,8 @@
 <template>
   <header class="header" :class="{'header--scrolled' : pageScrolled}">
-    <Logo :color="logoColor" />
+    <Logo />
     <nav class="nav">
-      <ThemeSwitch v-on:theme-change="updateLogo" />
+      <ThemeSwitch />
       <MenuToggle v-if="menuToggle" />
     </nav>
   </header>
@@ -18,7 +18,7 @@ export default {
   components: {
     ThemeSwitch,
     MenuToggle,
-    Logo
+    Logo,
   },
   props: {
     menuToggle: {
@@ -29,13 +29,9 @@ export default {
   data() {
     return {
       pageScrolled: false,
-      logoColor: 'bright'
     }
   },
   methods: {
-    updateLogo: function() {
-      this.logoColor = (this.logoColor == 'dark' ? 'bright' : 'dark')
-    },
     headerScroll: function() {
       let fromTop = window.scrollY
 
@@ -46,10 +42,6 @@ export default {
   },
   mounted() {
     window.addEventListener('scroll', this.headerScroll)
-
-    if (process.isClient) {
-      this.logoColor = localStorage.getItem('theme')
-    }
   }
 }
 </script>
@@ -59,18 +51,26 @@ export default {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  z-index: 11;
   position: fixed;
   top: 0;
   right: -12px;
   left: 0;
-  z-index: 10;
-  padding: 15px 30px;
+  padding: 15px 30px 0 30px;
   transition: padding .15s linear, background .15s linear, border-color .15s linear;
   will-change: padding, background;
   border-bottom: 1px solid transparent;
 
   @include respond-above(sm) {
-    padding: 30px;
+    padding-top: 30px;
+  }
+
+  /* shrink header to the corner so it doesn't cover the content */
+  @include respond-above(sm) {
+    justify-content: end;
+    left: inherit;
+    padding-left: 0px;
+    .logo { display: none; }
   }
 
   &--scrolled {
@@ -92,6 +92,7 @@ export default {
 
 nav {
   display: flex;
+  z-index: 10;
 }
 </style>
 

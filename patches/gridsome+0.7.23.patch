@@ -1,0 +1,25 @@
+diff --git a/node_modules/gridsome/lib/app/queue/ImageProcessQueue.js b/node_modules/gridsome/lib/app/queue/ImageProcessQueue.js
+index 58e934f..08a6ae9 100644
+--- a/node_modules/gridsome/lib/app/queue/ImageProcessQueue.js
++++ b/node_modules/gridsome/lib/app/queue/ImageProcessQueue.js
+@@ -187,8 +187,7 @@ class ImageProcessQueue {
+       results.noscriptHTML = '' +
+         `<noscript>` +
+         `<img class="${classNames.join(' ')} g-image--loaded" ` +
+-        `src="${results.src}" width="${results.size.width}"` +
+-        (options.height ? ` height="${options.height}"` : '') +
++        `src="${results.src}" width="${results.size.width}" height="${results.size.height}"` +
+         (options.alt ? ` alt="${options.alt}">` : '>') +
+         `</noscript>`
+ 
+@@ -198,8 +197,8 @@ class ImageProcessQueue {
+     results.imageHTML = '' +
+       `<img class="${classNames.join(' ')}" ` +
+       `src="${isLazy ? results.dataUri || results.src : results.src}" ` +
+-      `width="${results.size.width}"` +
+-      (options.height ? ` height="${options.height}"` : '') +
++      `width="${results.size.width}" ` +
++      `height="${results.size.height}"` +
+       (options.alt ? ` alt="${options.alt}"` : '') +
+       (isLazy && isSrcset ? ` data-srcset="${results.srcset.join(', ')}"` : '') +
+       (isLazy && isSrcset ? ` data-sizes="${results.sizes}"` : '') +

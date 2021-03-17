@@ -32,6 +32,7 @@ export default {
         self.theme = 'bright'
       } 
       if (process.isClient) {
+        body.classList.remove('dark', 'bright')
         body.classList.add(localStorage.getItem('theme'))
         self.theme = localStorage.getItem('theme')
       }

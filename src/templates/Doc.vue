@@ -23,10 +23,7 @@ query Doc ($path: String!) {
 export default {
   metaInfo() {
     return {
-      title: this.$page.doc.title,
-      meta: [
-        { key: 'description', name: 'description', content: this.$page.doc.description }
-      ]
+      title: `${this.$page.doc.title} - eznode`
     }
   }
 }
@@ -34,24 +31,22 @@ export default {
 
 
 <style lang="scss" scoped>
-/deep/ > p {
-  opacity: .8;
-}
 
 /deep/ > h2 {
-  padding-top: 100px;
-  margin-top: -80px;
+  margin-top: -10px;
+  padding-top: 30px;
+
+  @include respond-below(sm) {
+    padding-top: 100px;
+    margin-top: -80px;
+  }
 
   @include respond-above(md) {
-    font-size: 2rem;
+    font-size: 1.8em;
   }
 }
 
-/deep/ > p > img {
-    max-width: 100%;
-  }
-
 .markdown {
-  padding-bottom: 50vh;
+  padding-bottom: 10vh;
 }
 </style>

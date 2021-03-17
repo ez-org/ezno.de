@@ -1,19 +1,15 @@
 {
-  "name": "Jamdocs",
-  "short_name": "Jamdocs",
+  "name": "eznode",
+  "short_name": "eznode",
   "icons": [
     {
-      "src": "logo-192.png",
-      "sizes": "192x192"
-    },
-    {
-      "src": "logo-512.png",
-      "sizes": "512x512"
+      "src": "logo-250.png",
+      "sizes": "250x250"
     }
   ],
   "lang": "en-US",
   "start_url": "/",
-  "display": "standalone",
+  "display": "browser",
   "theme_color": "#10c186",
   "background_color": "#FFF"
 }

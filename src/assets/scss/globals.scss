@@ -1,8 +1,5 @@
-@import 'config/colors';
-@import 'config/maps';
-@import 'config/mixins';
-@import 'config/functions';
 @import 'prism';
+// scss/config/*.scss gets loaded automatically by gridsome.config.js
 
 html {
   scroll-behavior: smooth;
@@ -10,6 +7,7 @@ html {
 
 body {
   font-family: 'Source Sans Pro', sans-serif;
+  font-size: 20px;
   margin: 0;
   padding: 0;
   line-height: 1.7;
@@ -58,4 +56,63 @@ h1 {
 
 a {
   color: $brandPrimary;
+  text-decoration: none;
 }
+
+/*.main { a:hover, a:focus, a:active { text-decoration: underline; } }*/
+
+details summary { cursor: pointer; }
+
+a .language-text { color: #10c186 !important; }
+
+code[class*="language-"], pre[class*="language-"] { padding: 20px; }
+
+.markdown {
+  img {
+    max-width: 100%;
+    height: auto;
+    opacity: 1;
+  }
+  p, li { opacity: 0.9 }
+}
+
+blockquote {
+  margin: 0;
+  padding-left: 1em;
+  border-left: .2em solid #8b949e;
+  opacity: 0.8;
+}
+
+.button, .docs-nav a {
+  border: 1px solid #10c186;
+  border-radius: 3px;
+  padding: .35rem .7rem;
+  letter-spacing: .5px;
+  transition: transform .2s,background .3s,box-shadow .3s,color .3s;
+}
+
+.dark .button { border-color: #10c186e6; }
+.bright .button { border-color: #10c186; }
+
+.docs-nav {
+  display: flex;
+  justify-content: space-between;
+  padding-top: 25px;
+  /*padding-bottom: 25px;
+  border-top: 1px solid #0d2538;*/
+
+  a {
+    display: inline-flex;
+    border-color: #10c18633;
+  }
+
+  > :last-child { text-align: right; }
+  
+  p { margin: 0; }
+  
+  @include respond-below(md) {
+    a { padding: 0; border: 0; }
+  }
+}
+
+

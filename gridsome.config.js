@@ -1,8 +1,17 @@
 // This is where project configuration and plugin options are located. 
 // Learn more: https://gridsome.org/docs/config
 
+// Hack 'github-slugger' to slugify alphanumeric characters only
+const Slugger = require('github-slugger'), slug = Slugger.prototype.slug;
+Slugger.prototype.slug = function(value, maintainCase) {
+  value = value.replace(/[^a-zA-Z0-9-]+/g, '-').replace(/^-+|-+$/g, '')
+  return slug.call(this, value, maintainCase)
+}
+
 // Changes here require a server restart.
 // To restart press CTRL + C in terminal and run `gridsome develop`
+
+
 const path = require('path')
 
 function addStyleResource (rule) {
@@ -10,17 +19,19 @@ function addStyleResource (rule) {
     .loader('style-resources-loader')
     .options({
       patterns: [
-        path.resolve(__dirname, './src/assets/scss/globals.scss')
+        path.resolve(__dirname, './src/assets/scss/config/*.scss')
       ],
     })
 }
 
 module.exports = {
-  siteName: 'Jamdocs',
-  siteUrl: 'https://jamdocs.samuelhorn.com',
+  siteName: 'eznode',
+  siteUrl: 'https://ezno.de',
+  titleTemplate: '%s',
   templates: {
     Doc: '/:slug',
   },
+  assetsDir: process.env.ASSETS_DIR || 'assets',
   plugins: [
     {
       use: '@gridsome/source-filesystem',
@@ -34,12 +45,13 @@ module.exports = {
         }
       }
     },
+    /*
     {
       use: '@gridsome/plugin-google-analytics',
       options: {
         id: (process.env.GA_ID ? process.env.GA_ID : 'XX-999999999-9')
       }
-    },
+    },*/
     {
       use: '@gridsome/plugin-sitemap',
       options: {
@@ -50,6 +62,22 @@ module.exports = {
   chainWebpack: config => {
     const types = ['vue-modules', 'vue', 'normal-modules', 'normal']
     types.forEach(type => addStyleResource(config.module.rule('scss').oneOf(type)))
+  },
+  configureWebpack: {
+    module: {
+        rules: [{
+          test: /\.md$/,
+          use: [
+              {
+                  loader: "html-loader"
+              },
+              {
+                  loader: "markdown-loader",
+                  options: { }
+              }
+          ]
+      }]
+    }
   }
 }
 

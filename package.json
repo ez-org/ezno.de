@@ -1,10 +1,11 @@
 {
-  "name": "jamdocs",
+  "name": "eznode-website",
   "private": true,
   "scripts": {
     "build": "gridsome build",
     "develop": "gridsome develop",
-    "explore": "gridsome explore"
+    "explore": "gridsome explore",
+    "postinstall": "patch-package"
   },
   "dependencies": {
     "@gridsome/plugin-google-analytics": "^0.1.0",
@@ -15,8 +16,11 @@
     "graphql-playground-html": "^1.6.22",
     "gridsome": "^0.7.0",
     "gridsome-plugin-algolia": "^2.1.1",
+    "html-loader": "^1.3.2",
     "kind-of": "^6.0.3",
+    "markdown-loader": "^6.0.0",
     "minimist": "^1.2.3",
+    "patch-package": "^6.4.7",
     "serialize-javascript": "^3.1.0",
     "typeface-source-sans-pro": "^0.0.54",
     "vue-feather-icons": "^4.22.0",

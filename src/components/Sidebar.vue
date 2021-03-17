@@ -1,14 +1,15 @@
 <template>
     <aside class="sidebar" :class="{'sidebar--open' : this.$store.state.sidebarOpen}">
+      <h2><g-link to="/"><span>eznode</span></g-link></h2>
       <nav>
         <ul>
           <li class="section" v-for="{ node } in $static.menu.edges" :key="node.id">
-            <h3 class="section-title">{{node.section}}</h3>
+            <!--<h3 class="section-title">{{node.section}}</h3>-->
             <ul>
               <li v-for="item in node.topics" :key="item.title">
                 <g-link class="topic" :to="'/' + item.slug">{{item.title}}</g-link>
                 <ul v-if="checkAnchors(node.slug, item.slug)" v-for="{ node } in $static.docs.edges" :key="node.id">
-                  <li v-for="heading in node.headings" :key="heading.value">
+                  <li v-for="heading in filterHeadings(node.headings)" :key="heading.value">
                     <a class="sub-topic" :href="'/' + item.slug + heading.anchor">{{heading.value}}</a>
                   </li>
                 </ul>
@@ -41,6 +42,7 @@ query Menu {
         headings {
           value
           anchor
+          depth
         }
       }
     }
@@ -82,7 +84,7 @@ export default {
         let section = document.querySelector(link.hash)
         let allCurrent = document.querySelectorAll('.current'), i
 
-        if (section.offsetTop <= fromTop) {
+        if (section.offsetTop <= fromTop + 7) {
           for (i = 0; i < allCurrent.length; ++i) {
             allCurrent[i].classList.remove('current')
           }
@@ -91,7 +93,8 @@ export default {
           link.classList.remove('current')
         }
       })
-    }
+    },
+    filterHeadings: headings => headings.filter(h => h.depth < 3),
   },
   beforeMount () {
     this.stateFromSize()
@@ -105,13 +108,12 @@ export default {
 <style lang="scss" scoped>
 .sidebar {
   transition: background .15s ease-in-out, transform .15s ease-in-out, border-color .15s linear;
-  padding: 100px 30px 30px;
+  padding: 30px;
   width: 300px;
   position: fixed;
   top: 0;
   bottom: 0;
   left: 0;
-  z-index: 9;
   will-change: transform;
   transform: translateX(-300px);
   border-right: 1px solid transparent;
@@ -123,6 +125,7 @@ export default {
 
   &--open {
     transform: translateX(0);
+    z-index: 11;
   }
   
   .bright & {
@@ -134,14 +137,28 @@ export default {
     background: $sidebarDark;
     border-color: shade($sidebarDark, 40%);
   }
+  
+  h2 {
+    font-size: 2em;
+    margin: 0 0 20px 10px;
+    a {
+      color: inherit;
+      text-decoration: none;
+
+      /* replace with 'eznode' in unicode monospace characters */
+      span { display: none; }
+      &:after { content: '𝚎𝚣𝚗𝚘𝚍𝚎'; letter-spacing: -1px; }
+    }
+  }
 }
 
 nav {
   position: relative;
-  min-height: 100%;
   border: 1px solid transparent;
-  padding-bottom: 40px;
+  padding-bottom: 20px;
 }
+
+nav > ul { margin-bottom: 15px; }
 
 ul {
   list-style: none;
@@ -161,7 +178,7 @@ ul {
 }
 
 .section {
-  margin-bottom: 30px;
+  ul ul { margin-left: 20px; }
 }
 
 .section-title {
@@ -178,7 +195,7 @@ ul {
 }
 
 .sub-topic {
-  font-size: .875rem;
+  font-size: .875em;
   position: relative;
   opacity: .8;
 
@@ -192,7 +209,7 @@ ul {
     display: block;
     opacity: 0;
     position: absolute;
-    top: 13px;
+    top: 18px;
     left: -15px;
   }
 
@@ -201,12 +218,6 @@ ul {
       opacity: 1;
     }
   }
-}
-
-.git {
-  position: absolute;
-  bottom: 0;
-  left: 0;
 }
 </style>
 

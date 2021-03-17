@@ -1,15 +1,6 @@
 <template>
-  <Layout :sidebar="false">
-    <div class="content">
-      <h1>{{ $static.metadata.siteName }} - {{ this.description }}</h1>
-      <nav>
-        <!-- To use other icons here, you need to import them in the Shortcut component -->
-        <Shortcut link="/getting-started" text="Introduction" icon="play-icon" />
-        <Shortcut link="/theme-configuration" text="Configuration" icon="sliders-icon" />
-        <Shortcut link="/theme-configuration#changing-colors" text="Change colors" icon="eye-icon" />
-      </nav>
-      <GitLink class="git" size="large" />
-    </div>
+  <Layout>
+     <div class="markdown" v-html="this.content" />
   </Layout>
 </template>
 
@@ -24,6 +15,7 @@ query {
 <script>
 import GitLink from '~/components/GitLink.vue'
 import Shortcut from '~/components/Shortcut.vue'
+import MarkdownContent from '../../docs/index.md'
 
 export default {
   components: {
@@ -32,57 +24,35 @@ export default {
   },
   data() {
     return {
-      description: 'The ultimate static generated documentation theme for the JAM-stack'
+      content: MarkdownContent.replace(/^<hr>.*<hr>/s, ''), // strip front matter
     }
   },
   metaInfo() {
     return {
-      title: this.description,
-      meta: [
-        { key: 'description', name: 'description', content: 'A theme for static site documentation based on Gridsome, ready to deploy to Netlify in one click.' }
-      ]
+      title: 'eznode'
     }
   }
 }
 </script>
 
 <style lang="scss" scoped>
-.content {
-  display: flex;
-  flex-direction: column;
+::v-deep h1 {
+  margin-bottom: 0;
 }
 
-h1 {
-  text-align: center;
-  max-width: 600px;
-  margin: 1.5em auto 1.5em;
-
-  @include respond-above(md) {
-    max-width: 1000px;
-  }
+::v-deep h3 {
+  font-weight: 500;
+  margin-top: 0.4em;
 }
 
-h2 {
-  font-size: 1.4rem;
-  margin: 0;
+::v-deep .button {
+  font-size: 1.2em;
+  margin: 0.5em 0 0 0;
+  display: inline-block;
+  padding: .5rem 1.5rem;
+  color: #fff;
+  background-color: rgba(16, 137, 96, 0.92);
+  border: 0;
 }
 
-nav {
-  display: flex;
-  justify-content: space-between;
-  flex-direction: column;
-
-  @include respond-above(sm) {
-    flex-direction: row;
-  }
-}
-
-.git {
-  margin: 3em 0 0;
-  align-self: center;
-
-  @include respond-above(md) {
-    margin: 5em 0 0;
-  }
-}
 </style>
