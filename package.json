@@ -2,7 +2,7 @@
   "name": "eznode-website",
   "private": true,
   "scripts": {
-    "build": "gridsome build",
+    "build": "gridsome build && ./src/inject-html-theme.sh",
     "develop": "gridsome develop",
     "explore": "gridsome explore",
     "postinstall": "patch-package"

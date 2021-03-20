@@ -15,9 +15,6 @@ export default function (Vue, { router, head, isClient, appOptions }) {
   // Add attributes to HTML tag
   head.htmlAttrs = { lang: 'en' }
   
-  // Enable 'bright' theme by default on the server-side pre-rendered html (will get overwritten with the user's preference)
-  if (!isClient) head.bodyAttrs = { class: 'bright' }
-  
   head.base = { href: '/' }
 
   head.meta.push({
