@@ -1,3 +1,27 @@
+diff --git a/node_modules/gridsome/app/graphql/guard.js b/node_modules/gridsome/app/graphql/guard.js
+index d7f153c..595d865 100644
+--- a/node_modules/gridsome/app/graphql/guard.js
++++ b/node_modules/gridsome/app/graphql/guard.js
+@@ -41,10 +41,16 @@ export default (to, from, next) => {
+       }
+     })
+     .catch(err => {
+-      if (err.code === 'MODULE_NOT_FOUND' || err.code === 404) {
+-        console.error(err)
++      console.error(err)
++
++      // We might get a 404 because the client had a previous build still open on their
++      // browser with a different assets directory name (its used as a cache buster).
++      // Try reloading the entire page when that happens.
++
++      const isNotFound = (err.code === 'MODULE_NOT_FOUND' || err.code === 404);
++      if (process.isServer && isNotFound) {
+         next({ name: '*', params: { 0: to.path } })
+-      } else if (err.code === 'INVALID_HASH' && to.path !== window.location.pathname) {
++      } else if ((err.code == 'INVALID_HASH' || isNotFound) && to.path !== window.location.pathname) {
+         const fullPathWithPrefix = (config.pathPrefix ?? '') + to.fullPath
+         window.location.assign(fullPathWithPrefix)
+       } else {
 diff --git a/node_modules/gridsome/lib/app/queue/ImageProcessQueue.js b/node_modules/gridsome/lib/app/queue/ImageProcessQueue.js
 index 58e934f..08a6ae9 100644
 --- a/node_modules/gridsome/lib/app/queue/ImageProcessQueue.js
