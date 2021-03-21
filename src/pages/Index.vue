@@ -1,5 +1,5 @@
 <template>
-  <Layout>
+  <Layout docPath="docs/index.md">
      <div class="markdown" v-html="this.content" />
   </Layout>
 </template>

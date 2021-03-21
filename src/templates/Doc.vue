@@ -1,5 +1,5 @@
 <template>
-  <Layout>
+  <Layout :docPath="$page.doc.fileInfo.path">
     <h1>
       {{ $page.doc.title }}
     </h1>
@@ -15,6 +15,7 @@ query Doc ($path: String!) {
     date (format: "D. MMMM YYYY")
     timeToRead
     content
+    fileInfo { path }
   }
 }
 </page-query>
@@ -44,9 +45,5 @@ export default {
   @include respond-above(md) {
     font-size: 1.8em;
   }
-}
-
-.markdown {
-  padding-bottom: 10vh;
 }
 </style>

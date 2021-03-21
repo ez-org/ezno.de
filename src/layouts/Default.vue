@@ -4,6 +4,7 @@
     <Sidebar v-if="sidebar" />
     <main class="main" :class="{'main--no-sidebar': !sidebar, 'main--sidebar-is-open' : this.$store.state.sidebarOpen}">
       <slot/>
+      <Footer :docPath="docPath" />
     </main>
   </div>
 </template>
@@ -19,17 +20,22 @@ query {
 <script>
 import Header from '~/components/Header.vue'
 import Sidebar from '~/components/Sidebar.vue'
+import Footer from '~/components/Footer.vue'
 
 export default {
   components: {
     Header,
-    Sidebar
+    Sidebar,
+    Footer,
   },
   props: {
     sidebar: {
       type: Boolean,
       default: true
-    }
+    },
+    docPath: {
+      type: String,
+    },
   },
   mounted() {
     this.$store.commit('closeSidebar')
@@ -50,8 +56,10 @@ export default {
 }
 
 .main {
+  position: relative;
   padding: 100px 30px 30px 30px;
   max-width: 950px;
+  min-height: 100vh;
   transition: transform .15s ease-in-out;
 
   @include respond-above(sm) {

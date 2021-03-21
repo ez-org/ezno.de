@@ -68,6 +68,8 @@ a .language-text { color: $brandPrimary !important; }
 code[class*="language-"], pre[class*="language-"] { padding: 20px; }
 
 .markdown {
+  padding-bottom: 10vh;
+
   img {
     max-width: 100%;
     height: auto;
