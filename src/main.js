@@ -84,7 +84,7 @@ export default function (Vue, { router, head, isClient, appOptions }) {
       return saved
     } else if (to.hash) {
       const el = document.querySelector(decodeURIComponent(to.hash))
-      el && setTimeout(_ => el.scorllIntoView() , 100)
+      el && setTimeout(_ => el.scrollIntoView(), 100)
       return new Promise(resolve => setTimeout(_ => resolve({ selector: decodeURIComponent(to.hash) }), 0))
     } else {
       return new Promise(resolve => setTimeout(_ => resolve({ x: 0, y: 0 }), 0))
