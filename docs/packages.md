@@ -155,7 +155,7 @@ The full list of BWT's config options is [available here](https://github.com/bwt
 
 [BTC RPC Explorer](https://github.com/janoside/btc-rpc-explorer) is a [block explorer](https://explorer.btc21.org/) and node dashboard with an [RPC console](https://explorer.btc21.org/rpc-browser?method=getblockheader), [statistics and graphs](https://explorer.btc21.org/block-stats), [status page](https://explorer.btc21.org/node-status), [peers overview](https://explorer.btc21.org/peers) and more.
 
-![](../src/assets/img/btc-rpc-explorer.png)
+[![](../src/assets/img/btc-rpc-explorer.png)](../src/assets/img/btc-rpc-explorer.png)
 
 Automatically connects with the BWT Electrum server, to enable exploration of your wallet addresses (but not of arbitrary addresses).
 
@@ -192,6 +192,8 @@ Plus all of [btc-rpc-explorer's options](https://github.com/janoside/btc-rpc-exp
 [Specter Desktop](https://github.com/cryptoadvance/specter-desktop) is a wallet GUI for Bitcoin Core with a focus on hardware and multi-sig setups.
 
 Using Specter with USB hardware wallets requires [setting up udev rules](https://github.com/cryptoadvance/specter-desktop/tree/master/udev#udev-rules) on the host and starting docker with [`--device /dev/<usb-device-id>`](https://docs.docker.com/engine/reference/commandline/run/#add-host-device-to-container---device). If you're unsure what the device id is, you could also (less ideally) use [`--privileged -v /dev:/dev`](https://docs.docker.com/engine/reference/run/#runtime-privilege-and-linux-capabilities) to give the container full access to all host devices.
+
+[![](../src/assets/img/specter-desktop.png)](../src/assets/img/specter-desktop.png)
 
 #### Options
 
