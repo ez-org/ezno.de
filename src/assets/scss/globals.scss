@@ -63,7 +63,7 @@ a {
 
 details summary { cursor: pointer; }
 
-a .language-text { color: #10c186 !important; }
+a .language-text { color: $brandPrimary !important; }
 
 code[class*="language-"], pre[class*="language-"] { padding: 20px; }
 
@@ -71,28 +71,30 @@ code[class*="language-"], pre[class*="language-"] { padding: 20px; }
   img {
     max-width: 100%;
     height: auto;
-    opacity: 1;
   }
-  p, li { opacity: 0.9 }
-}
-
-blockquote {
-  margin: 0;
-  padding-left: 1em;
-  border-left: .2em solid #8b949e;
-  opacity: 0.8;
+  p, li {
+    .bright & { color: change-color($textBright, $alpha: 0.9); }
+    .dark & { color: change-color($textDark, $alpha: 0.9); }
+  }
+  blockquote {
+    margin: 0;
+    padding-left: 1em;
+    border-left: .2em solid #8b949e;
+    .bright &, .bright & p { color: change-color($textBright, $alpha: 0.8); }
+    .dark &, .dark & p { color: change-color($textDark, $alpha: 0.8); }
+  }
 }
 
 .button, .docs-nav a {
-  border: 1px solid #10c186;
+  border: 1px solid $brandPrimary;
   border-radius: 3px;
   padding: .35rem .7rem;
   letter-spacing: .5px;
   transition: transform .2s,background .3s,box-shadow .3s,color .3s;
 }
 
-.dark .button { border-color: #10c186e6; }
-.bright .button { border-color: #10c186; }
+.dark .button { border-color: change-color($brandPrimary, $alpha: 0.8); }
+.bright .button { border-color: $brandPrimary; }
 
 .docs-nav {
   display: flex;
@@ -103,7 +105,7 @@ blockquote {
 
   a {
     display: inline-flex;
-    border-color: #10c18633;
+    border-color: change-color($brandPrimary, $alpha: 0.2);
   }
 
   > :last-child { text-align: right; }
