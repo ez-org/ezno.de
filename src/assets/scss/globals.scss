@@ -87,7 +87,7 @@ code[class*="language-"], pre[class*="language-"] { padding: 20px; }
   }
 }
 
-.button, .docs-nav a {
+.button {
   border: 1px solid $brandPrimary;
   border-radius: 3px;
   padding: .35rem .7rem;
@@ -102,8 +102,6 @@ code[class*="language-"], pre[class*="language-"] { padding: 20px; }
   display: flex;
   justify-content: space-between;
   padding-top: 25px;
-  /*padding-bottom: 25px;
-  border-top: 1px solid #0d2538;*/
 
   a {
     display: inline-flex;
@@ -113,10 +111,6 @@ code[class*="language-"], pre[class*="language-"] { padding: 20px; }
   > :last-child { text-align: right; }
   
   p { margin: 0; }
-  
-  @include respond-below(md) {
-    a { padding: 0; border: 0; }
-  }
 }
 
 
