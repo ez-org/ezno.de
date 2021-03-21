@@ -155,6 +155,8 @@ The full list of BWT's config options is [available here](https://github.com/bwt
 
 [BTC RPC Explorer](https://github.com/janoside/btc-rpc-explorer) is a [block explorer](https://explorer.btc21.org/) and node dashboard with an [RPC console](https://explorer.btc21.org/rpc-browser?method=getblockheader), [statistics and graphs](https://explorer.btc21.org/block-stats), [status page](https://explorer.btc21.org/node-status), [peers overview](https://explorer.btc21.org/peers) and more.
 
+![](../src/assets/img/btc-rpc-explorer.png)
+
 Automatically connects with the BWT Electrum server, to enable exploration of your wallet addresses (but not of arbitrary addresses).
 
 #### Pruning support
