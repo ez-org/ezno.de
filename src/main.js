@@ -83,8 +83,11 @@ export default function (Vue, { router, head, isClient, appOptions }) {
     if (saved) {
       return saved
     } else if (to.hash) {
-      const el = document.querySelector(decodeURIComponent(to.hash))
-      el && setTimeout(_ => el.scrollIntoView(), 100)
+      if (navigator.userAgent.includes('Firefox')) {
+        // Firefox scrolls a bit off the target without this hack
+        const el = document.querySelector(decodeURIComponent(to.hash))
+        el && setTimeout(_ => el.scrollIntoView(), 100)
+      }
       return new Promise(resolve => setTimeout(_ => resolve({ selector: decodeURIComponent(to.hash) }), 0))
     } else {
       return new Promise(resolve => setTimeout(_ => resolve({ x: 0, y: 0 }), 0))
