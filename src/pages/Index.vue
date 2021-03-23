@@ -13,15 +13,9 @@ query {
 </static-query>
 
 <script>
-import GitLink from '~/components/GitLink.vue'
-import Shortcut from '~/components/Shortcut.vue'
 import MarkdownContent from '../../docs/index.md'
 
 export default {
-  components: {
-    GitLink,
-    Shortcut
-  },
   data() {
     return {
       content: MarkdownContent.replace(/^<hr>.*<hr>/s, ''), // strip front matter
@@ -55,6 +49,14 @@ export default {
   padding: .5rem 1.5rem;
   color: #fff;
   border: 0;
+}
+
+::v-deep .github-btn svg {
+  font-size: 1.8em;
+  width: 1em;
+  height: 1em;
+  vertical-align: -0.3em;
+  margin-left: 0.4em;
 }
 
 </style>

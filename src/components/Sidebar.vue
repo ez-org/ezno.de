@@ -6,6 +6,12 @@
           <li class="section" v-for="{ node } in $static.menu.edges" :key="node.id">
             <!--<h3 class="section-title">{{node.section}}</h3>-->
             <ul>
+              <li class="icons">
+                <a title="Github" href="https://github.com/ez-org/eznode"><github-icon /></a>
+                <a title="Twitter" href="https://twitter.com/eznode_"><twitter-icon /></a>
+                <a title="Telegram" href="https://t.me/ez_node"><send-icon /></a>
+                <a title="IRC" href="https://webchat.freenode.net/#eznode"><hash-icon /></a>
+              </li>
               <li v-for="item in node.topics" :key="item.title">
                 <g-link class="topic" :to="'/' + item.slug">{{item.title}}</g-link>
                 <ul v-if="checkAnchors(node.slug, item.slug)" v-for="{ node } in $static.docs.edges" :key="node.id">
@@ -17,7 +23,6 @@
             </ul>
           </li>
         </ul>
-        <GitLink class="git" />
       </nav>
     </aside>
 </template>
@@ -51,12 +56,15 @@ query Menu {
 </static-query>
 
 <script>
-import GitLink from '~/components/GitLink.vue'
 import throttle from 'lodash/throttle'
+import { GithubIcon, TwitterIcon, SendIcon, HashIcon } from 'vue-feather-icons'
 
 export default {
   components: {
-    GitLink
+    GithubIcon,
+    TwitterIcon,
+    SendIcon,
+    HashIcon,
   },
   watch: {
     '$route' () {
@@ -142,7 +150,7 @@ export default {
   
   h2 {
     font-size: 2em;
-    margin: 0 0 20px 10px;
+    margin: 0 0 15px 0px;
     a {
       color: inherit;
       text-decoration: none;
@@ -217,6 +225,28 @@ ul {
       opacity: 1;
     }
   }
+}
+
+.icons {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: 139px;
+  line-height: 1;
+  margin-bottom: 6px;
+
+  a {
+    display: inline;
+    padding: 0;
+  }
+  svg {
+    font-size: 1em;
+    width: 1em;
+    height: 1em;
+    vertical-align: -4px;
+    margin-right: 5px;
+  }
+  svg:hover { color: $brandPrimary; }
 }
 </style>
 
