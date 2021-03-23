@@ -94,15 +94,14 @@ code[class*="language-"] {
 }
 
 .button {
-  border: 1px solid $brandPrimary;
   border-radius: 3px;
   padding: .35rem .7rem;
   letter-spacing: .5px;
   transition: transform .2s,background .3s,box-shadow .3s,color .3s;
 }
 
-.dark .button { border-color: change-color($brandPrimary, $alpha: 0.8); }
-.bright .button { border-color: $brandPrimary; }
+.dark .button { background-color: $btnColorDark; }
+.bright .button { background-color: $btnColorBright; }
 
 .docs-nav {
   display: flex;
