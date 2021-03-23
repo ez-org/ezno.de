@@ -191,9 +191,10 @@ Plus all of [btc-rpc-explorer's options](https://github.com/janoside/btc-rpc-exp
 
 [Specter Desktop](https://github.com/cryptoadvance/specter-desktop) is a wallet GUI for Bitcoin Core with a focus on hardware and multi-sig setups.
 
+[![](../src/assets/img/specter-desktop.png)](../src/assets/img/specter-desktop.png)
+
 Using Specter with USB hardware wallets requires [setting up udev rules](https://github.com/cryptoadvance/specter-desktop/tree/master/udev#udev-rules) on the host and starting docker with [`--device /dev/<usb-device-id>`](https://docs.docker.com/engine/reference/commandline/run/#add-host-device-to-container---device). If you're unsure what the device id is, you could also (less ideally) use [`--privileged -v /dev:/dev`](https://docs.docker.com/engine/reference/run/#runtime-privilege-and-linux-capabilities) to give the container full access to all host devices.
 
-[![](../src/assets/img/specter-desktop.png)](../src/assets/img/specter-desktop.png)
 
 #### Options
 

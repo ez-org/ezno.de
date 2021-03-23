@@ -57,7 +57,7 @@ eznode can be configured in several ways:
        # Enable *trusted* fast-sync
        # TRUSTED_FASTSYNC=1
        
-       # Enable Tor onion service
+       # Enable Tor Onion service
        TOR=1
        
        # Keep blocks since 2021 to enable wallet rescans
@@ -74,6 +74,8 @@ eznode can be configured in several ways:
    ```bash
    docker run -it ... -e NETWORK=signet eznode/eznode
    ```
+
+> Note that dashed options (like `-e` or `--name`) always go *before* the `eznode/eznode` in the `docker run` command.
 
 Global options:
 

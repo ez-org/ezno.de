@@ -49,7 +49,7 @@ ez status <services...>
 ez start|stop|restart <services...>
 ```
 
-![](../src/assets/img/services.png)
+[![](../src/assets/img/services.png)](../src/assets/img/services.png)
 
 ## 🖥️ Terminal display
 
@@ -57,7 +57,7 @@ You can setup a live textual terminal display with information about your node a
 
 It will look something like this:
 
-![](../src/assets/img/banner.png)
+[![](../src/assets/img/banner.png)](../src/assets/img/banner.png)
 
 ## 📝 Viewing logs
 

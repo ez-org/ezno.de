@@ -4,9 +4,10 @@ date: 2021-03-16
 slug: index__111
 
 ---
-# 𝚎𝚣𝚗𝚘𝚍𝚎
+# eznode
 
-### A simple single-container docker setup for a personal bitcoin full node
+### A simple pruning-friendly setup for a personal bitcoin full node
+
 
 [![Build Status](https://travis-ci.org/shesek/eee.svg?branch=master)](https://travis-ci.org/shesek/eee)
 [![Latest release](https://img.shields.io/github/v/tag/shesek/eee?label=version&color=orange)](https://github.com/ez-org/eznode/releases/latest)
@@ -14,6 +15,7 @@ slug: index__111
 [![MIT license](https://img.shields.io/github/license/bwt-dev/bwt.svg?color=yellow)](https://github.com/ez-org/eznode/blob/master/LICENSE)
 [![Chat on Telegram](https://img.shields.io/badge/chat-on%20telegram-blue)](https://t.me/ez_node)
 [![Chat on IRC](https://img.shields.io/badge/chat-on%20IRC-green.svg)](https://webchat.freenode.net/#eznode)
+<!--[![Follow on Twitter](https://img.shields.io/badge/follow-on%20twitter-219eea)](https://twitter.com/eznode_)-->
 
 Featuring:
 

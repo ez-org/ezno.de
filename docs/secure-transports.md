@@ -16,7 +16,7 @@ The onion service files, including secret key material, will be kept in `/data/t
 
 Start with `TOR=1`. The `.onion` hostname will be shown on startup.
 
-![](../src/assets/img/tor.png)
+[![](../src/assets/img/tor.png)](../src/assets/img/tor.png)
 
 You'll be able to access your server through the `.onion` address from any client device with Tor installed, like the [Tor Browser](https://www.torproject.org/download/) for desktop or [Orbot](https://play.google.com/store/apps/details?id=org.torproject.android) for Android.
 
@@ -55,10 +55,7 @@ Enable `SSHD`, publish the SSH port (2222) for remote access and give the contai
 (server)$ docker run -p 2222:2222 --hostname ez -it ... eznode/eznode SSHD=1
 ```
 
-![](../src/assets/img/ssh.png)
-
-
-> You might need to open port `2222` on your firewall (e.g. `ufw allow to any port 2222`).
+[![](../src/assets/img/ssh.png)](../src/assets/img/ssh.png)
 
 #### Client set-up
 
@@ -138,9 +135,9 @@ You will now be able to connect to the eznode SSH server through `cheapvps.com:2
 
 ## 🔐 NGINX SSL
 
-NGINX-powered SSL terminating reverse proxy. Provides encryption, but not authentication. SSL relies on central authorities and is best avoided.
+NGINX-powered SSL terminating reverse proxy.
 
-To setup, set `SSL=1`, publish the SSL port and make sure to enable authentication:
+To setup, set `SSL=1`, publish the SSL port and make sure to enable password-based [authentication](accessing#authentication) for the web services:
 
 ```bash
 docker run -it -p 443:3443 ... eznode/eznode SSL=1 AUTH_TOKEN=mySecretPassword
@@ -152,7 +149,7 @@ The web services will be available on port `3443` under `/bwt/`, `/explorer/` an
 
 The *unauthenticated* Electrum SSL server will be available on port `50002`. It should *not* be exposed directly to the Internet and is meant to be used behind an authentication layer like SSH or Tor.
 
-When `AUTH_TOKEN` is set, NGINX will be configured to authenticate the password before forwarding traffic to the backend web services. This helps protect against zero-day exploits.
+When `AUTH_TOKEN` is set, NGINX will be configured to authenticate the password before forwarding traffic to the backend web services. This helps protect them against exploitation of security vulnerabilities.
 
 
 #### Options
@@ -173,9 +170,6 @@ To obtain a CA-signed certificate from Let's Encrypt, set `SSL=1 SSL_DOMAIN=<dom
 ```bash
 docker run -it -p 443:3443 -p 80:8080 ... eznode/eznode SSL=1 SSL_DOMAIN=mynodebox.com
 ```
-
-> You might need to open the HTTP/S ports on your firewall (e.g. `ufw allow to any port 80,443`).
-
 
 #### With existing webserver
 
