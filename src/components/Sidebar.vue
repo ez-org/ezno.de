@@ -150,7 +150,7 @@ export default {
   
   h2 {
     font-size: 2em;
-    margin: 0 0 15px 0px;
+    margin: 0 0 13px 3px;
     a {
       color: inherit;
       text-decoration: none;
@@ -227,23 +227,30 @@ ul {
   }
 }
 
+.topic, .sub-topic {
+  &:hover {
+    color: $brandPrimary;
+  }
+}
+
 .icons {
   display: flex;
   justify-content: space-between;
   align-items: center;
   max-width: 139px;
   line-height: 1;
-  margin-bottom: 6px;
+  margin-left: 3px;
+  margin-bottom: 8px;
+  opacity: 0.8;
 
   a {
     display: inline;
     padding: 0;
   }
   svg {
-    font-size: 1em;
+    font-size: 0.95em;
     width: 1em;
     height: 1em;
-    vertical-align: -4px;
     margin-right: 5px;
   }
   svg:hover { color: $brandPrimary; }
