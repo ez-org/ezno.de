@@ -54,7 +54,7 @@ export default {
   display: inline-block;
   padding: .5rem 1.5rem;
   color: #fff;
-  background-color: rgba(16, 137, 96, 0.92);
+  background-color: $btnColor;
   border: 0;
 }
 
