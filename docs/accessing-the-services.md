@@ -69,7 +69,7 @@ You can use any username to login, except for the NGINX-based authentication whi
 
 <div class="docs-nav">
 
-[← ✨ Getting started](getting-started)
+[← ⭐ Getting started](getting-started)
 
 [🎁 Packages →](packages)
 
