@@ -12,16 +12,8 @@ body {
   padding: 0;
   line-height: 1.7;
   transition: background .15s ease-in-out, color .15s ease-in-out;
-
-  &::before {
-    display: none;
-    visibility: hidden;
-    content: 'small';
-
-    @include respond-above(sm) {
-      content: 'large'
-    }
-  }
+  overflow-wrap: break-word;
+  word-break: break-word;
 
   &.bright {
     background: $backgroundBright;
@@ -66,6 +58,11 @@ details summary { cursor: pointer; }
 a .language-text { color: $brandPrimary !important; }
 
 code[class*="language-"], pre[class*="language-"] { padding: 20px; }
+code[class*="language-"] {
+  overflow-wrap: break-word;
+  word-break: break-word;
+}
+
 
 .markdown {
   padding-bottom: 10vh;

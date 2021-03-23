@@ -33,11 +33,10 @@ footer {
   padding-bottom: inherit;
 
   font-size: 0.8em;
-  font-weight: 300;
 
   p { margin: 0; }
-  p:first-child a:first-child { font-weight: normal; }
-  p:last-child { font-weight: 200; }
+  p:first-child a:first-child { font-weight: 600; }
+  p:last-child { font-weight: 300; }
 
   @media (min-width: 610px) and (max-width: 767px), (min-width: 920px) {
     display: flex;

@@ -38,10 +38,13 @@ export default {
 <style lang="scss" scoped>
 ::v-deep h1 {
   margin-bottom: 0;
+  font-size: 2.5em;
+  letter-spacing: 1.5px;
 }
 
 ::v-deep h3 {
   font-weight: 500;
+  font-size: 1.3em;
   margin-top: 0.4em;
 }
 

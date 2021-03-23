@@ -10,7 +10,7 @@
                 <g-link class="topic" :to="'/' + item.slug">{{item.title}}</g-link>
                 <ul v-if="checkAnchors(node.slug, item.slug)" v-for="{ node } in $static.docs.edges" :key="node.id">
                   <li v-for="heading in filterHeadings(node.headings)" :key="heading.value">
-                    <a class="sub-topic" :href="'/' + item.slug + heading.anchor">{{heading.value}}</a>
+                    <g-link class="sub-topic" :to="'/' + item.slug + heading.anchor">{{heading.value}}</g-link>
                   </li>
                 </ul>
               </li>
@@ -144,10 +144,7 @@ export default {
     a {
       color: inherit;
       text-decoration: none;
-
-      /* replace with 'eznode' in unicode monospace characters */
-      span { display: none; }
-      &:after { content: '𝚎𝚣𝚗𝚘𝚍𝚎'; letter-spacing: -1px; }
+      letter-spacing: 2px;
     }
   }
 }
@@ -171,7 +168,7 @@ ul {
     padding: 5px 0;
     display: block;
 
-    &.active {
+    &.topic.active {
       color: $brandPrimary;
     }
   }

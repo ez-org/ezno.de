@@ -11,6 +11,7 @@
   perspective: 200px;
   font-weight: bolder;
   font-size: 1.15em;
+  letter-spacing: 1px;
   
   div {
     height: 40px;
