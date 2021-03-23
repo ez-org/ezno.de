@@ -100,7 +100,9 @@ export default {
     this.stateFromSize()
   },
   mounted() {
-    window.addEventListener('scroll', throttle(this.sidebarScroll, 50))
+    const throttled = throttle(this.sidebarScroll, 50)
+    window.addEventListener('scroll', throttled)
+    this.$root._router.afterEach(throttled)
   }
 }
 </script>
