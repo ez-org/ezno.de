@@ -227,11 +227,11 @@ ul {
   }
 }
 
-.topic, .sub-topic {
+/*.topic, .sub-topic {
   &:hover {
     color: $brandPrimary;
   }
-}
+}*/
 
 .icons {
   display: flex;
