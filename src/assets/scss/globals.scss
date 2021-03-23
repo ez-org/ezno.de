@@ -15,6 +15,15 @@ body {
   overflow-wrap: break-word;
   word-break: break-word;
 
+  &::before {
+    display: none;
+    visibility: hidden;
+    content: 'small';
+    @include respond-above(sm) {
+      content: 'large'
+    }
+  }
+
   &.bright {
     background: $backgroundBright $backgroundBrightPattern;
     color: $textBright;
