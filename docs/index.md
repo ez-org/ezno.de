@@ -17,7 +17,7 @@ slug: index__111
 [![Chat on IRC](https://img.shields.io/badge/chat-on%20IRC-green.svg)](https://webchat.freenode.net/#eznode)
 <!--[![Follow on Twitter](https://img.shields.io/badge/follow-on%20twitter-219eea)](https://twitter.com/eznode_)-->
 
-Featuring:
+Docker-based single-container image featuring:
 
 * [**Bitcoin Core:**](packages#bitcoin-core) Pruned by default with optional *trusted* fast-sync
 * [**Electrum Server:**](packages#bitcoin-wallet-tracker) Personal Electrum server powered by BWT
@@ -27,8 +27,8 @@ Featuring:
 
 Why eznode?
 
-* Simple, hassle-free setup
-* Lightweight (a single 115 MB docker image)
+* Simple one command setup
+* Lightweight (a 115 MB docker image)
 * Pruning-friendly (requires <5GB of storage)
 * Suitable for a dedicated box, but doesn't require one
 * Supports Linux, macOS, Windows and ARMv7/v8

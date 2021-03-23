@@ -163,7 +163,7 @@ When `AUTH_TOKEN` is set, NGINX will be configured to authenticate the password 
 - `3443` (HTTPS)
 - `50002` (Electrum RPC)
 
-## 📜 Let's Encrypt
+## 📃 Let's Encrypt
 
 To obtain a CA-signed certificate from Let's Encrypt, set `SSL=1 SSL_DOMAIN=<domain>` and publish the HTTP/S ports for remote access, like so:
 
