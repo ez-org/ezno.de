@@ -27,19 +27,6 @@ To experiment on signet, set `NETWORK=signet`.
 
 Signature verification instructions [are available here](signed-images).
 
-## ✂️ Pruning
-
-eznode is pruned by default with prune=550. It'll take up a total of \~4.8GB including the UTXO set and indexes (as of March 2021).
-
-A pruned node can only scan the recent blocks it still has available for transactions related to your wallet. This makes it primarily suitable for use with newly created wallets.
-
-There is, however, an opportunity to scan for your wallet's full history during the initial sync of your node, by scanning the blocks before they get pruned. This requires your xpubs/descriptors to be [configured](getting-started#configuration) during the initial sync and will not work with [fast-sync](packages#fast-sync).
-
-Additional xpubs/descriptors added after your node is synced will by default be tracked for new activity only.
-If you'd like to retain the ability to rescan wallets with historical activity, set `PRUNE_UNTIL=<yyyy-mm-dd>` to keep blocks after the given date or `PRUNE=0` to disable pruning entirely. _(Make sure to add these options in your config file so they don't get lost.)_
-
-Then, when adding new xpubs/descriptors, you could initiate a rescan by setting `RESCAN_SINCE=<yyyy-mm-dd>` to the wallet creation time (err on the too early side to avoid missing transactions). It will have to be more recent than `PRUNE_UNTIL`.
-
 ## ⚙️ Configuration
 
 There are no mandatory configurations \\o/, but you'll need to set at least one `XPUB`/`DESCRIPTOR` to use the [BWT Electrum server](packages#bitcoin-wallet-tracker).
@@ -95,6 +82,19 @@ Enable/disable packages:
 * `SSL=0`
 
 See the individual packages for their configuration options.
+
+## ✂️ Pruning
+
+eznode is pruned by default with prune=550. It'll take up a total of \~4.8GB including the UTXO set and indexes (as of March 2021).
+
+A pruned node can only scan the recent blocks it still has available for transactions related to your wallet. This makes it primarily suitable for use with newly created wallets.
+
+There is, however, an opportunity to scan for your wallet's full history during the initial sync of your node, by scanning the blocks before they get pruned. This requires your xpubs/descriptors to be [configured](getting-started#configuration) during the initial sync and will not work with [fast-sync](packages#fast-sync).
+
+Additional xpubs/descriptors added after your node is synced will by default be tracked for new activity only.
+If you'd like to retain the ability to rescan wallets with historical activity, set `PRUNE_UNTIL=<yyyy-mm-dd>` to keep blocks after the given date or `PRUNE=0` to disable pruning entirely. _(Make sure to add these options in your config file so they don't get lost.)_
+
+Then, when adding new xpubs/descriptors, you could initiate a rescan by setting `RESCAN_SINCE=<yyyy-mm-dd>` to the wallet creation time (err on the too early side to avoid missing transactions). It will have to be more recent than `PRUNE_UNTIL`.
 
 <div class="docs-nav"><span></span>
 
