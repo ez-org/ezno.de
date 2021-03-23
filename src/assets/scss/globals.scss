@@ -16,12 +16,12 @@ body {
   word-break: break-word;
 
   &.bright {
-    background: $backgroundBright;
+    background: $backgroundBright $backgroundBrightPattern;
     color: $textBright;
   }
 
   &.dark {
-    background: $backgroundDark;
+    background: $backgroundDark $backgroundDarkPattern;
     color: $textDark;
   }
 }
