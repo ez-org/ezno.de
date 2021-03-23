@@ -28,7 +28,7 @@ The ports are: `8332` for the Bitcoin Core RPC, `50001` for the BWT Electrum ser
 
 To access the services within a secure LAN, publish the ports on `0.0.0.0` or leave the address unspecified (e.g. `-p 3002:3002`). Note that this will bind on all available interfaces and [go right over](https://github.com/docker/for-linux/issues/777) some software firewalls.
 
-Depending on how secure you consider your LAN to be, you might want to consider enabling [authentication](#authentication) and/or encryption with SSH/SSL.
+Depending on how secure you consider your LAN to be, you might want to consider enabling [authentication](accessing#authentication) and/or encryption with SSH/SSL.
 
 ## 🌐 Connecting remotely
 
@@ -46,15 +46,15 @@ You can access your eznode remotely using Tor onion services, SSH port tunneling
 
   Set `SSHD=1` to enable. See [more details and options here](transports#dropbear-ssh).
 
-* SSL relies on centralized authorities and is the least secure option. It also does not natively provide authentication, making it _unsuitable_ for accessing the (unauthenticated) Electrum server. It can be suitable for the bwt/specter/explorer web servers if [`AUTH_TOKEN`](#authentication) is enabled.
+* SSL relies on centralized authorities and is the least secure option. It also does not natively provide authentication, making it _unsuitable_ for accessing the (unauthenticated) Electrum server. It can be suitable for the bwt/specter/explorer web servers if [`AUTH_TOKEN`](accessing#authentication) is enabled.
 
   On the plus side, SSL works on nearly all end devices with no special software or configuration. But it still requires setting up port forwarding on the server.
 
   Set `SSL=1` to enable with a self-signed cert, add `SSL_DOMAIN=mydomain.com` to obtain a LetsEncrypt certificate. See [more details and options here](transports#nginx-ssl).
 
-> If you're connecting directly to your server's IP address (i.e. not via onion or a [reverse SSH tunnel](transports#punch-through-nats-with-a-reverse-ssh-tunnel)) and don't have a static IP address, you'll probably want to use a dynamic DNS service like [afraid.org](https://freedns.afraid.org/).
+If you're connecting directly to your server's IP address (i.e. not via onion or a [reverse SSH tunnel](transports#punch-through-nats-with-a-reverse-ssh-tunnel)) and don't have a static IP address, you can consider using a dynamic DNS service like [afraid.org](https://freedns.afraid.org/).
 
-## 🔐 Authentication
+## 🔑 Authentication
 
 You can set `AUTH_TOKEN=mySecretPassword` to enable password authentication for everything _except_ the Electrum server - BWT's HTTP API, BTC RPC Explorer and Specter.
 

@@ -49,7 +49,7 @@ By default, the SSH server permits port tunneling only. Set `SSHD=UNRESTRICTED` 
 
 #### Server set-up
 
-Enable `SSHD`, publish the SSH port (2222) for remote access and give the container an hostname (to make its virtual IP address easily discoverable from the client).
+Set `SSHD=1`, publish the SSH port (2222) for remote access and give the container an hostname (to make its virtual IP address easily discoverable from the client).
 
 ```bash
 (server)$ docker run -p 2222:2222 --hostname ez -it ... eznode/eznode SSHD=1
@@ -76,7 +76,7 @@ You will now be able to access the remote Electrum server through `localhost:500
 
 You can setup an SSH tunnel from Android using the [ConnectBot](https://connectbot.org/) app. Install it and:
 
-1. Transfer the generated `client_rsa` private key file to your phone, open the app, tap `⋮` > `Manage Pubkeys` > :open_file_folder: and load the key. Long-tap it and select `Load` and `Load on start`.
+1. Transfer the generated `client_rsa` private key file to your phone, open the app, tap `⋮` > `Manage Pubkeys` > 📁 and load the key. Long-tap it and select `Load` and `Load on start`.
 
    > Alternatively, you can generate a key with ConnectBot and transfer the public key file to the server.
 
@@ -143,7 +143,9 @@ To setup, set `SSL=1`, publish the SSL port and make sure to enable password-bas
 docker run -it -p 443:3443 ... eznode/eznode SSL=1 AUTH_TOKEN=mySecretPassword
 ```
 
-A private key and a self-signed certificate will be automatically generated and saved to `/data/ssl-keys/selfsigned.{key,cert}`. See [*Let's Encrypt*](#let-s-encrypt) below for a CA-signed cert.
+[![](../src/assets/img/ssl-nginx.png)](../src/assets/img/ssl-nginx.png)
+
+A private key and a self-signed certificate will be automatically generated and saved to `/data/ssl-keys/selfsigned.{key,cert}`. See [*Let's Encrypt*](transports#let-s-encrypt) below for a CA-signed cert.
 
 The web services will be available on port `3443` under `/bwt/`, `/explorer/` and `/specter/`.
 
@@ -170,6 +172,8 @@ To obtain a CA-signed certificate from Let's Encrypt, set `SSL=1 SSL_DOMAIN=<dom
 ```bash
 docker run -it -p 443:3443 -p 80:8080 ... eznode/eznode SSL=1 SSL_DOMAIN=mynodebox.com
 ```
+
+[![](../src/assets/img/ssl-letsencrypt.png)](../src/assets/img/ssl-letsencrypt.png)
 
 #### With existing webserver
 

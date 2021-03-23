@@ -12,8 +12,9 @@ slug: getting-started
 docker run -it --rm --name ez -v ~/eznode:/data eznode/eznode TOR=1 XPUB=<xpub>
 ```
 
-This will setup a pruned Bitcoin Core full node, an Electrum server tracking your `<xpub>`, a block explorer and a Tor onion service for secure remote access. All the information you need for accessing them will be shown on startup.
+This will setup a pruned Bitcoin Core full node, a personal Electrum server tracking your `<xpub>`, a block explorer and a Tor onion service for secure remote access. All the information you need for accessing them will be shown on startup.
 
+You can skip setting an `XPUB` if you're not using the [Electrum server](packages#bitcoin-wallet-tracker).
 Change `~/eznode` if you'd like to store the node's data files elsewhere. On Windows, you can use `$env:AppData\eznode` to store them in `C:\Users\<USER>\AppData\Roaming`. They require \~4.8GB of free space.
 
 On Windows/macOS, you'll need to [publish the ports with `-p`](accessing#connecting-locally) to access them locally.
@@ -64,7 +65,7 @@ eznode can be configured in several ways:
        PRUNE_UNTIL=2021-01-01
 
    > The config file is `source`ed and may contain variables, bash scripting and comments.
-2. Using a list of `KEY=VALUE` pairs tucked at the end of `docker run`:
+2. Using a list of `KEY=VALUE` pairs tucked at the *end* of `docker run`:
 
    ```bash
    docker run -it ... eznode/eznode NETWORK=signet
@@ -75,7 +76,7 @@ eznode can be configured in several ways:
    docker run -it ... -e NETWORK=signet eznode/eznode
    ```
 
-> Note that dashed options (like `-e` or `--name`) always go *before* the `eznode/eznode` in the `docker run` command.
+> Note that dashed options (like `-e` or `--name`) always go *before* `eznode/eznode`.
 
 Global options:
 

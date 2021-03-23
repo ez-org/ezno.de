@@ -8,7 +8,6 @@ slug: index__111
 
 ### A simple pruning-friendly setup for a personal bitcoin full node
 
-
 [![Build Status](https://travis-ci.org/shesek/eee.svg?branch=master)](https://travis-ci.org/shesek/eee)
 [![Latest release](https://img.shields.io/github/v/tag/shesek/eee?label=version&color=orange)](https://github.com/ez-org/eznode/releases/latest)
 [![Docker pulls](https://img.shields.io/docker/pulls/eznode/eznode.svg?color=blueviolet)](https://hub.docker.com/r/eznode/eznode)
@@ -17,7 +16,7 @@ slug: index__111
 [![Chat on IRC](https://img.shields.io/badge/chat-on%20IRC-green.svg)](https://webchat.freenode.net/#eznode)
 <!--[![Follow on Twitter](https://img.shields.io/badge/follow-on%20twitter-219eea)](https://twitter.com/eznode_)-->
 
-Docker-based single-container image featuring:
+Docker-based single-container package, featuring:
 
 * [**Bitcoin Core:**](packages#bitcoin-core) Pruned by default with optional *trusted* fast-sync
 * [**Electrum Server:**](packages#bitcoin-wallet-tracker) Personal Electrum server powered by BWT
@@ -28,7 +27,7 @@ Docker-based single-container image featuring:
 Why eznode?
 
 * Simple one command setup
-* Lightweight (a 115 MB docker image)
+* Lightweight (115 MB docker image)
 * Pruning-friendly (requires <5GB of storage)
 * Suitable for a dedicated box, but doesn't require one
 * Supports Linux, macOS, Windows and ARMv7/v8

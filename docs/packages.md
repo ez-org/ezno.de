@@ -8,6 +8,8 @@ slug: packages
 
 Full bitcoin node. [Pruned](getting-started#pruning) by default.
 
+Enabled unless an [external full node](packages#using-existing-full-node) was configured.
+
 #### Fast sync
 
 To enable fast-sync, set `TRUSTED_FASTSYNC=1`. This will download a recent pruned datadir snapshot from [prunednode.today](https://prunednode.today/) and start syncing from that instead of from scratch.
@@ -31,7 +33,7 @@ If you already have a Bitcoin Core instance running on the same machine, you can
 docker run -v ~/.bitcoin:/bitcoin:ro -it ... eznode/eznode
 ```
 
-> On Linux, you'll need to add `--add-host host.docker.internal:host-gateway` to make the host's address discoverable from within the container. On Windows, change `~/.bitcoin` to `$env:AppData\Bitcoin`.
+> On Linux, you'll also need to add `--add-host host.docker.internal:host-gateway` to make the host's address discoverable from within the container. On Windows, change `~/.bitcoin` to `$env:AppData\Bitcoin`.
 
 Instructions for modifying bitcoind's `rpcbind`/`rpcallowip` config will be shown on startup. If you're running into trouble with Docker's virtual networking, you can try with [`--net host`](https://docs.docker.com/network/host/) (this should ideally be avoided).
 
@@ -44,7 +46,7 @@ If your node is running remotely, you can configure its URL and RPC credentials 
 <details>
 <summary>Expand instructions...</summary>
 
-To issue RPC commands against eznode's managed Bitcoin Core instance, use `docker exec ez bitcoin-cli <command>` (see [_Node management_](node-management)).
+To issue RPC commands against eznode's managed Bitcoin Core instance, use `docker exec ez bitcoin-cli <command>` (see [_Node management_](node-management)) or the web RPC console available in BTC RPC Explorer ([public demo](https://explorer.btc21.org/rpc-browser?method=getblockheader)).
 
 To connect to the Bitcoin Core RPC from your host, set `BITCOIND_RPC_ACCESS=<user:pwd>` to open the RPC server for external access using password-based authentication.
 
@@ -122,7 +124,7 @@ If you're connecting remotely, you'll need to setup [Tor Onion or an SSH tunnel]
 You can setup Electrum desktop to connect with eznode using the [BWT Electrum plugin](https://github.com/bwt-dev/bwt-electrum-plugin).
 The plugin will run a separate BWT instance that connects directly to Bitcoin Core and automatically detects your wallet(s) xpub(s).
 
-[Open RPC access](#accessing-managed-full-node) to Bitcoin Core by setting `BITCOIND_RPC_ACCESS=<user:pwd>`, then follow the [instructions here](https://github.com/bwt-dev/bwt-electrum-plugin#installation) to setup the plugin.
+[Open RPC access](packages#accessing-managed-full-node) to Bitcoin Core by setting `BITCOIND_RPC_ACCESS=<user:pwd>`, then follow the [instructions here](https://github.com/bwt-dev/bwt-electrum-plugin#installation) to setup the plugin.
 </details>
 
 #### Options
@@ -133,7 +135,7 @@ The plugin will run a separate BWT instance that connects directly to Bitcoin Co
 * `RESCAN_SINCE=now` (date to begin rescanning for historical wallet transactions in `YYYY-MM-DD` format. rescan is disabled by default.)
 * `BITCOIND_WALLET=ez-bwt` (bitcoind wallet to use)
 * `CREATE_WALLET_IF_MISSING=1` (automatically create a new bitcoind wallet)
-* `GAP_LIMIT=20` (the [gap limit](https://github.com/bwt-dev/bwt#gap-limit) for tracking derived addresses)
+* `GAP_LIMIT=300` (the [gap limit](https://github.com/bwt-dev/bwt#gap-limit) for tracking derived addresses)
 * `FORCE_RESCAN=0` (force rescanning for historical transactions, even if the addresses were already previously imported)
 * `HTTP_CORS=<none>` (allowed cross-origins for the http api server)
 * `WEBHOOK_URLS=<none>` (URLs to notify with real-time wallet events)
@@ -156,6 +158,8 @@ The full list of BWT's config options is [available here](https://github.com/bwt
 [BTC RPC Explorer](https://github.com/janoside/btc-rpc-explorer) is a [block explorer](https://explorer.btc21.org/) and node dashboard with an [RPC console](https://explorer.btc21.org/rpc-browser?method=getblockheader), [statistics and graphs](https://explorer.btc21.org/block-stats), [status page](https://explorer.btc21.org/node-status), [peers overview](https://explorer.btc21.org/peers) and more.
 
 [![](../src/assets/img/btc-rpc-explorer.png)](../src/assets/img/btc-rpc-explorer.png)
+
+Enabled by default, can be [accessed](accessing) using a web browser (e.g. http://ez:3002 if the [`ez` host alias](accessing#connecting-locally) is setup).
 
 Automatically connects with the BWT Electrum server, to enable exploration of your wallet addresses (but not of arbitrary addresses).
 
@@ -192,6 +196,9 @@ Plus all of [btc-rpc-explorer's options](https://github.com/janoside/btc-rpc-exp
 [Specter Desktop](https://github.com/cryptoadvance/specter-desktop) is a wallet GUI for Bitcoin Core with a focus on hardware and multi-sig setups.
 
 [![](../src/assets/img/specter-desktop.png)](../src/assets/img/specter-desktop.png)
+
+Set `SPECTER=1` to enable and [access](accessing) using a web browser (e.g. http://ez:25441 if the [`ez` host alias](accessing#connecting-locally) is setup).
+For your security, using a separate browser profile without extensions is *highly* recommended.
 
 Using Specter with USB hardware wallets requires [setting up udev rules](https://github.com/cryptoadvance/specter-desktop/tree/master/udev#udev-rules) on the host and starting docker with [`--device /dev/<usb-device-id>`](https://docs.docker.com/engine/reference/commandline/run/#add-host-device-to-container---device). If you're unsure what the device id is, you could also (less ideally) use [`--privileged -v /dev:/dev`](https://docs.docker.com/engine/reference/run/#runtime-privilege-and-linux-capabilities) to give the container full access to all host devices.
 

@@ -81,7 +81,7 @@ And re-start the `docker run` command.
 
 ## 💾 Backing up
 
-All of the important directories that needs to be backed up are symlinked in `/important`. You can create a backup `tar.gz` file with everything using the following command:
+You can create a backup `tar.gz` file using this command:
 
 ```bash
 ez backup > ez-backup.tar.gz
@@ -96,7 +96,10 @@ The backup includes the following:
 * Tor onion service files (`/data/tor-hsv`)
 * Config file (`/data/config`)
 
-Everything that needs to be backed up is kept within the directory mounted to `/data`, so keeping a safe copy of it is sufficient. But `/data` also includes files that don't require a backup, like the bitcoind data files. The `/important` directory contains the minimal set of files that do require it.
+You'll need to make ongoing backups whenever new wallets, devices or transaction labels are added in Specter.
+Other than that, backing up once initially should generally be enough.
+
+> Everything that needs to be backed up is kept within the directory mounted to `/data`, so keeping a safe copy of it is sufficient. But `/data` also includes files that don't require a backup, like the bitcoind data files, while `ez backup` does not.
 
 <div class="docs-nav">
 
