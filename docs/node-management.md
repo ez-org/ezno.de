@@ -79,6 +79,8 @@ docker pull eznode/eznode
 
 And re-start the `docker run` command.
 
+> Signature verification instructions [are available here](signed-images).
+
 ## 💾 Backing up
 
 You can create a backup `tar.gz` file using this command:

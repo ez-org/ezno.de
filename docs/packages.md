@@ -8,7 +8,7 @@ slug: packages
 
 Full bitcoin node. [Pruned](getting-started#pruning) by default.
 
-Enabled unless an [external full node](packages#using-existing-full-node) was configured.
+Enabled unless an [external full node](packages#using-existing-full-node) is configured.
 
 #### Fast sync
 

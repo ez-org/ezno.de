@@ -11,12 +11,11 @@ slug: index__111
 
 [![Build Status](https://travis-ci.org/shesek/eee.svg?branch=master)](https://travis-ci.org/shesek/eee)
 [![Latest release](https://img.shields.io/github/v/tag/shesek/eee?label=version&color=orange)](https://github.com/ez-org/eznode/releases/latest)
-[![MIT license](https://img.shields.io/github/license/bwt-dev/bwt.svg?color=yellow)](https://github.com/ez-org/eznode/blob/master/LICENSE)
+[![MIT license](https://img.shields.io/github/license/bwt-dev/bwt.svg?color=blue)](https://github.com/ez-org/eznode/blob/master/LICENSE)
 [![Docker pulls](https://img.shields.io/docker/pulls/eznode/eznode.svg?color=blueviolet)](https://hub.docker.com/r/eznode/eznode)
-[![GitHub forks](https://img.shields.io/github/forks/ez-org/ezno.de)](https://github.com/ez-org/eznode/network/members)
-[![GitHub Repo stars](https://img.shields.io/github/stars/ez-org/ezno.de?color=BF9D3E)](https://github.com/ez-org/eznode/stargazers)
+[![GitHub stars](https://img.shields.io/github/stars/ez-org/ezno.de?color=BF9D3E)](https://github.com/ez-org/eznode/stargazers)
 
-Docker-based single-container package, featuring:
+Docker-based single-container package featuring:
 
 * [**Bitcoin Core:**](packages#bitcoin-core) Pruned by default with optional *trusted* fast-sync
 * [**Electrum Server:**](packages#bitcoin-wallet-tracker) Personal Electrum server powered by BWT
