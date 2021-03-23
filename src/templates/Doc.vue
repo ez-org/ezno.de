@@ -23,8 +23,10 @@ query Doc ($path: String!) {
 <script>
 export default {
   metaInfo() {
+    const title = `${this.$page.doc.title} - eznode`;
     return {
-      title: `${this.$page.doc.title} - eznode`
+      title,
+      meta: [{ key: 'og:title', name: 'og:title', content: title }],
     }
   }
 }

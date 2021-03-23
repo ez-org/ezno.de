@@ -21,6 +21,7 @@ export default function (Vue, { router, head, isClient, appOptions }) {
     name: 'description',
     content: 'A simple pruning-friendly setup for a personal bitcoin full node'
   }, {
+    key: 'og:title',
     name: 'og:title',
     content: '✨ 𝚎𝚣𝚗𝚘𝚍𝚎'
   }, {
