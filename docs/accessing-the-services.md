@@ -62,7 +62,7 @@ You can set `AUTH_TOKEN=mySecretPassword` to enable password authentication for 
 
 If you're only accessing eznode locally or if you're using an authentication layer like Tor or SSH, enabling the password may not be necessary.
 
-When the NGINX-backed SSL is enabled, NGINX will be configured to authenticate the password before forwarding traffic to the backend services. This helps protect them against exploitation of security vulnerabilities.
+When the NGINX-backed SSL is enabled, NGINX will be configured to authenticate the password before forwarding traffic to the backend web services. This helps protect them against exploitation of security vulnerabilities.
 
 You can use any username to login, except for the NGINX-based authentication which expects `satoshi`.
 

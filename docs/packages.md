@@ -14,7 +14,7 @@ Enabled unless an [external full node](packages#using-existing-full-node) is con
 
 To enable fast-sync, set `TRUSTED_FASTSYNC=1`. This will download a recent pruned datadir snapshot from [prunednode.today](https://prunednode.today/) and start syncing from that instead of from scratch.
 
-This can get your node synced up 10-60 minutes, but requires ⚠ **trusting** the distributor of the snapshot. A malicious distributor could _feed you with invalid chain history and lead you to accept fake coins_. Please consider waiting some more for a full sync to avoid taking this risk.
+This can get your node synced up 5-60 minutes, but requires ⚠ **trusting** the distributor of the snapshot. A malicious distributor could _feed you with invalid chain history and lead you to accept fake coins_. Please consider waiting some more for a full sync to avoid taking this risk.
 
 A fast-synced node [is not able](getting-started#pruning) to scan for historical wallet transactions and can therefore only be used with newly created wallets.
 

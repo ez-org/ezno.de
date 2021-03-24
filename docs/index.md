@@ -26,7 +26,7 @@ Docker-based single-container package featuring:
 Why eznode?
 
 * Simple one command setup
-* Lightweight (115 MB docker image)
+* Lightweight (120 MB docker image)
 * Pruning-friendly (requires <5GB of storage)
 * Suitable for a dedicated box, but doesn't require one
 * Supports Linux, macOS, Windows and ARMv7/v8
