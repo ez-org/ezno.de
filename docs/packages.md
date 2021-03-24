@@ -14,7 +14,7 @@ Enabled unless an [external full node](packages#using-existing-full-node) is con
 
 To enable fast-sync, set `TRUSTED_FASTSYNC=1`. This will download a recent pruned datadir snapshot from [prunednode.today](https://prunednode.today/) and start syncing from that instead of from scratch.
 
-This can get your node synced up 10-60 minutes (depending on how recent the snapshot is), but requires ⚠ **trusting** the distributor of the snapshot. A malicious distributor could _feed you with invalid chain history and lead you to accept fake coins_. Please consider waiting some more for a full sync to avoid taking this risk.
+This can get your node synced up 10-60 minutes, but requires ⚠ **trusting** the distributor of the snapshot. A malicious distributor could _feed you with invalid chain history and lead you to accept fake coins_. Please consider waiting some more for a full sync to avoid taking this risk.
 
 A fast-synced node [is not able](getting-started#pruning) to scan for historical wallet transactions and can therefore only be used with newly created wallets.
 
@@ -58,9 +58,9 @@ If you'd like to access the RPC remotely, set `BITCOIND_RPC_ONION` to expose it 
 
 #### Options for managed full node
 
-* `PRUNE=550` (set to `0` to disable pruning)
-* `PRUNE_UNTIL=<height|yyyy-mm-dd>` (prune blocks before the given height/date)
-* `TXINDEX=0` (enabling this requires pruning to be disabled)
+* `PRUNE=550` (prune size, set to `0` to disable pruning)
+* `PRUNE_UNTIL=<off>` (keep blocks after the given height/date)
+* `TXINDEX=0` (enable txindex, requires pruning to be disabled)
 * `BITCOIND_LISTEN=0` (accept incoming connections on the bitcoin p2p network)
 * `BITCOIND_TOR=0` (connect to the bitcoin network through tor)
 * `BITCOIND_RPC_ACCESS` (expose the bitcoind rpc with password-based auth)
@@ -70,10 +70,10 @@ If you'd like to access the RPC remotely, set `BITCOIND_RPC_ONION` to expose it 
 
 A config file may also be provided at `/data/bitcoin/bitcoin.conf`, but the options above will take priority over it.
 
-#### Options for fastsync
+#### Options for fast-sync
 
 * `TRUSTED_FASTSYNC=0` (enable fast-sync)
-* `FASTSYNC_PARALLEL=<N>` (download using N parallel connections)
+* `FASTSYNC_PARALLEL=N` (download using `N` parallel connections)
 
 #### Paths
 
@@ -88,13 +88,15 @@ A config file may also be provided at `/data/bitcoin/bitcoin.conf`, but the opti
 
 ## 🔍 Bitcoin Wallet Tracker
 
-[Bitcoin Wallet Tracker](https://bwt.dev/) is a personal wallet tracker that watches your wallet's activity, available as an Electrum RPC server and an [HTTP API](https://github.com/bwt-dev/bwt#http-api).
+[Bitcoin Wallet Tracker](https://bwt.dev/) is a personal wallet tracker that watches your wallet's activity, available as an Electrum RPC server and a descriptor-based [HTTP API](https://github.com/bwt-dev/bwt#http-api). It works similarly to EPS.
 
 BWT keeps an index of your wallet transactions only. To make your wallet activity available, you'll need to [configure](getting-started#configuration) your `XPUB`s/`DESCRIPTOR`s (use `XPUB_*`/`DESC_*` if you have multiple, e.g. `XPUB_1` or `DESC_CHANGE`).
 
 With pruning enabled (the default), starting with a new wallet is the easiest.
 A new wallet is also recommended for privacy reasons if your addresses were previously exposed to public Electrum servers.
 To use an existing wallet, refer to the [instructions here](getting-started#pruning).
+
+[![](../src/assets/img/bwt-electrum.png)](../src/assets/img/bwt-electrum.png)
 
 #### Electurm wallet setup
 
@@ -121,10 +123,11 @@ If you're connecting remotely, you'll need to setup [Tor Onion or an SSH tunnel]
 <details>
 <summary>Expand instructions...</summary>
 
-You can setup Electrum desktop to connect with eznode using the [BWT Electrum plugin](https://github.com/bwt-dev/bwt-electrum-plugin).
+Alternatively, you can also setup Electrum desktop to connect with eznode using the [BWT Electrum plugin](https://github.com/bwt-dev/bwt-electrum-plugin).
 The plugin will run a separate BWT instance that connects directly to Bitcoin Core and automatically detects your wallet(s) xpub(s).
 
 [Open RPC access](packages#accessing-managed-full-node) to Bitcoin Core by setting `BITCOIND_RPC_ACCESS=<user:pwd>`, then follow the [instructions here](https://github.com/bwt-dev/bwt-electrum-plugin#installation) to setup the plugin.
+
 </details>
 
 #### Options
@@ -134,7 +137,6 @@ The plugin will run a separate BWT instance that connects directly to Bitcoin Co
 * `DESCRIPTOR`/`DESCRIPTOR_*`/`DESC_*` (script descriptors to track)
 * `RESCAN_SINCE=now` (date to begin rescanning for historical wallet transactions in `YYYY-MM-DD` format. rescan is disabled by default.)
 * `BITCOIND_WALLET=ez-bwt` (bitcoind wallet to use)
-* `CREATE_WALLET_IF_MISSING=1` (automatically create a new bitcoind wallet)
 * `GAP_LIMIT=300` (the [gap limit](https://github.com/bwt-dev/bwt#gap-limit) for tracking derived addresses)
 * `FORCE_RESCAN=0` (force rescanning for historical transactions, even if the addresses were already previously imported)
 * `HTTP_CORS=<none>` (allowed cross-origins for the http api server)
