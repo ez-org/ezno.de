@@ -1,9 +1,7 @@
 <template>
   <Layout :docPath="$page.doc.fileInfo.path">
-    <h1>
-      {{ $page.doc.title }}
-    </h1>
-     <div class="markdown" v-html="$page.doc.content" />
+    <h1>{{ $page.doc.title }}</h1>
+    <div class="markdown" v-html="$page.doc.content" />
   </Layout>
 </template>
 
@@ -11,9 +9,6 @@
 query Doc ($path: String!) {
   doc: doc (path: $path) {
     title
-    path
-    date (format: "D. MMMM YYYY")
-    timeToRead
     content
     fileInfo { path }
   }
@@ -23,7 +18,7 @@ query Doc ($path: String!) {
 <script>
 export default {
   metaInfo() {
-    const title = `${this.$page.doc.title} - eznode`;
+    const title = `${this.$page.doc.title} – eznode`;
     return {
       title,
       meta: [{ key: 'og:title', name: 'og:title', content: title }],
