@@ -241,7 +241,6 @@ ul {
   line-height: 1;
   margin-left: 3px;
   margin-bottom: 8px;
-  opacity: 0.8;
 
   a {
     display: inline;
@@ -253,8 +252,7 @@ ul {
     height: 1em;
     margin-right: 5px;
   }
+  svg:not(:hover) { opacity: 0.7; }
   svg:hover { color: $brandPrimary; }
 }
 </style>
-
-
