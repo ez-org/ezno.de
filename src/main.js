@@ -62,18 +62,20 @@ export default function (Vue, { router, head, isClient, appOptions }) {
 
   // Matomo tracker
   head.script.push({
-      innerHTML: `(function(u,p){p.push(['trackPageView']);p.push(['enableLinkTracking']);p.push(['setTrackerUrl',u+'t']);p.push(['setSiteId','2']);var d=document,g=d.createElement('script'),s=d.getElementsByTagName('script')[0];g.type='text/javascript';g.async=true;g.src=u+'j';s.parentNode.insertBefore(g,s);})('//s.ezno.de/',window._paq=[])`,
+      innerHTML: `(function(u,p){p.push(['setTrackerUrl',u+'t']);p.push(['setSiteId','2']);var d=document,g=d.createElement('script'),s=d.getElementsByTagName('script')[0];g.type='text/javascript';g.async=true;g.src=u+'j';s.parentNode.insertBefore(g,s);})('//s.ezno.de/',window._paq=[])`,
       body: true,
   })
   head.noscript.push({
       innerHTML: `<img src='//s.ezno.de/t?idsite=2&amp;rec=1'>`,
   })
   if (process.isClient) {
-    window._paq || (window._paq = []);
+    window._paq || (window._paq = [])
     router.afterEach((to, from) => {
-      _paq.push(['setCustomUrl', to.fullPath]);
-      _paq.push(['trackPageView', to.fullPath]);
-      _paq.push(['enableLinkTracking']);
+      // always add a trailing slash
+      const path = to.fullPath.replace(/^([^#]+[^/])($|#)/, '$1/$2')
+      _paq.push(['setCustomUrl', path])
+      _paq.push(['trackPageView', path])
+      _paq.push(['enableLinkTracking'])
     })
   }
 
