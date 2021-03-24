@@ -4,14 +4,6 @@
   </Layout>
 </template>
 
-<static-query>
-query {
-  metadata {
-    siteName
-  }
-}
-</static-query>
-
 <script>
 import MarkdownContent from '../../docs/index.md'
 
