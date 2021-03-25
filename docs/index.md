@@ -9,11 +9,11 @@ slug: index__111
 
 ### A simple pruning-friendly setup for a personal bitcoin full node
 
-[![Build Status](https://travis-ci.org/shesek/eee.svg?branch=master)](https://travis-ci.org/shesek/eee)
-[![Latest release](https://img.shields.io/github/v/tag/shesek/eee?label=version&color=orange)](https://github.com/ez-org/eznode/releases/latest)
-[![MIT license](https://img.shields.io/github/license/bwt-dev/bwt.svg?color=blue)](https://github.com/ez-org/eznode/blob/master/LICENSE)
+[![Build Status](https://travis-ci.org/ez-org/eznode.svg?branch=master)](https://travis-ci.org/ez-org/eznode)
+[![Latest release](https://img.shields.io/github/v/tag/ez-org/eznode?label=version&color=orange)](https://github.com/ez-org/eznode/releases/latest)
+[![MIT license](https://img.shields.io/github/license/ez-org/eznode.svg?color=blue)](https://github.com/ez-org/eznode/blob/master/LICENSE)
 [![Docker pulls](https://img.shields.io/docker/pulls/eznode/eznode.svg?color=blueviolet)](https://hub.docker.com/r/eznode/eznode)
-[![GitHub stars](https://img.shields.io/github/stars/ez-org/ezno.de?color=BF9D3E)](https://github.com/ez-org/eznode/stargazers)
+[![GitHub stars](https://img.shields.io/github/stars/ez-org/eznode?color=BF9D3E)](https://github.com/ez-org/eznode/stargazers)
 
 Docker-based single-container package featuring:
 
