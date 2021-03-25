@@ -29,7 +29,7 @@ export default function (Vue, { router, head, isClient, appOptions }) {
     content: 'A simple pruning-friendly setup for a personal bitcoin full node'
   }, {
     name: 'og:image',
-    content: 'https://x.ezno.de/preview.png'
+    content: 'https://ezno.de/preview.png'
   }, {
     name: 'twitter:card',
     content: 'summary_large_image'
