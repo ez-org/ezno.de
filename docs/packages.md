@@ -100,7 +100,7 @@ To use an existing wallet, refer to the [instructions here](getting-started#prun
 
 [![](../src/assets/img/bwt-electrum.png)](../src/assets/img/bwt-electrum.png)
 
-#### Electurm wallet setup
+#### Electrum wallet setup
 
 <details>
 <summary>Expand instructions...</summary>

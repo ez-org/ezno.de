@@ -68,7 +68,7 @@ Global options:
 
 * `NETWORK=bitcoin` (or `signet`/`testnet`/`regtest`)
 * `AUTH_TOKEN=<none>` (enable [authentication](accessing#authentication))
-* `VERBOSE=0` (increase logs verbosity)
+* `VERBOSE=0` (logs verbosity level)
 * `BIND_ADDR=<auto>` (defaults to the container's virtual address)
 
 Enable/disable packages:
