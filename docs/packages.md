@@ -113,7 +113,7 @@ Restart eznode, wait for BWT to start up and run `electrum $(docker exec ez elec
 
     electrum --oneserver --server ez:50001:t --skipmerklecheck
 
-> If you don't have the [`ez` hostname](accessing#connecting-locally) set up, replace `ez` with the IP address shown on startup (`electrum-args` does this automatically). The [`skipmerklecheck`](https://github.com/spesmilo/electrum/pull/4957) option is needed to support pruning.
+> If you don't have the [`ez` hostname](accessing#connecting-locally) set up, replace `ez` with the container's IP address (shown on startup) on Linux or with `127.0.0.1` on macOS/Windows (`electrum-args` does this automatically). The [`skipmerklecheck`](https://github.com/spesmilo/electrum/pull/4957) option is needed to support pruning.
 
 To configure Electrum to use eznode by default, run `docker exec ez electrum-cfg | bash -x`. This will issue `electrum setconfig` commands (you can run without `| bash` to see them).
 
@@ -169,19 +169,16 @@ Automatically connects with the BWT Electrum server, to enable exploration of yo
 
 #### Pruning support
 
-<details>
-<summary>Expand...</summary>
-
 When pruning is enabled or if `txindex` is disabled (the default), some functionality will be limited:
 
-* You will only be able to search for wallet, mempool and recently confirmed transactions by their `txid`.<br>
-  Searching for non-wallet transactions that were confirmed over 3 blocks ago is only possible if you provide the confirmed block height in addition to the `txid`, using `<txid>@<height>` in the search box.
-* Pruned blocks will display basic header information, without the list of transactions. Transactions in pruned blocks will not be available, unless they're wallet-related.
+* Pruned blocks will display basic header information, without the list of transactions.
+* Transactions in pruned blocks will not be available, unless they're wallet-related.
 * The address and amount of previous transaction outputs will not be shown, only the `txid:vout`.
 * Mining fees will only be shown for unconfirmed transactions.
+* You will only be able to search for wallet, mempool and recently confirmed transactions by their `txid`.<br>
+  Searching for non-wallet transactions that were confirmed over 3 blocks ago is only possible if you provide the confirmed block height in addition to the `txid`, using `<txid>@<height>` in the search box.
 
 To enable full block explorer functionality, set `PRUNE=0 TXINDEX=1`.
-</details>
 
 #### Options
 

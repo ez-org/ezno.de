@@ -13,7 +13,7 @@ alias bitcoin-cli='ez bitcoin-cli'
 
 With these in place, you can use `bitcoin-cli` as you normally would and `ez <cmd>` to issue other commands on the container.
 
-You can add the aliases to `~/.profile` to make them permanent. The instructions below assumes you have them set up.
+You can add the aliases to `~/.bashrc` to make them permanent. The instructions below assumes you have them set up.
 
 To run an interactive command, use `docker exec` with `-it`. For example, `docker exec -it ez bash` to start a new shell.
 
