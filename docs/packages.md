@@ -35,7 +35,7 @@ If you already have a Bitcoin Core instance running on the same machine, you can
 docker run -v ~/.bitcoin:/bitcoin:ro -it ... eznode/eznode
 ```
 
-> On Linux, you'll also need to add `--add-host host.docker.internal:host-gateway` to make the host's address discoverable from within the container. On Windows, change `~/.bitcoin` to `$env:AppData\Bitcoin`.
+> On Linux, you'll also need to add `--add-host host.docker.internal:host-gateway` to make the host's address discoverable from within the container. On Windows, change `~/.bitcoin` to `$env:AppData\Bitcoin`. On macOS, change it to `~/Library/Application Support/Bitcoin`.
 
 Instructions for modifying bitcoind's `rpcbind`/`rpcallowip` config will be shown on startup. If you're running into trouble with Docker's virtual networking, you can try with [`--net host`](https://docs.docker.com/network/host/) (this should ideally be avoided).
 
