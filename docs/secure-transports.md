@@ -40,7 +40,7 @@ You can set `TOR_NONANONYMOUS=1` to use the [single-hop non-anonymous mode](http
 
 Lightweight SSH server powered by [Dropbear](https://matt.ucc.asn.au/dropbear/dropbear.html). For secure remote access via SSH tunnels, using public-key based authentication.
 
-A pair of client and server keys will be generated for you by default. The client's private key that can be used to login will be available in `/data/ssh-keys/client_rsa`.
+A pair of client and server keys will be generated for you by default. The client's private key that can be used to login will be available in `/data/ssh-keys/client_ecdsa`.
 
 If you already have a client key that you'd like to use, you can mount the pubkey file into `/root/id.pub` (e.g. `-v ~/.ssh/id_rsa.pub:/root/id.pub`), or mount an `authorized_keys` file into `/root/.ssh/authorized_keys`.
 
@@ -59,10 +59,10 @@ Set `SSHD=1`, publish the SSH port (2222) for remote access and give the contain
 
 #### Client set-up
 
-Copy the generated client key file from `~/eznode/ssh-keys/client_rsa` on the server to the client machine and setup an SSH tunnel:
+Copy the generated client key file from `~/eznode/ssh-keys/client_ecdsa` on the server to the client machine and setup an SSH tunnel:
 
 ```bash
-(client)$ ssh -i ./client_rsa -fTN -L 50001:ez:50001 -p 2222 root@mynode.com
+(client)$ ssh -i ./client_ecdsa -fTN -L 50001:ez:50001 -p 2222 root@mynode.com
 ```
 
 You will now be able to access the remote Electrum server through `localhost:50001` on the client.
@@ -76,7 +76,7 @@ You will now be able to access the remote Electrum server through `localhost:500
 
 You can setup an SSH tunnel from Android using the [ConnectBot](https://connectbot.org/) app. Install it and:
 
-1. Transfer the generated `client_rsa` private key file to your phone, open the app, tap `⋮` > `Manage Pubkeys` > 📁 and load the key. Long-tap it and select `Load` and `Load on start`.
+1. Transfer the generated `client_ecdsa` private key file to your phone, open the app, tap `⋮` > `Manage Pubkeys` > 📁 and load the key. Long-tap it and select `Load` and `Load on start`.
 
    > Alternatively, you can generate a key with ConnectBot and transfer the public key file to the server.
 
@@ -127,8 +127,8 @@ You will now be able to connect to the eznode SSH server through `cheapvps.com:2
 
 #### Paths
 - `/root/id.pub` `/root/.ssh/authorized_keys` (mount from host to use existing client key)
-- `/data/ssh-keys/client_rsa` (generated client key)
-- `/data/ssh-keys/host_rsa` (generate host key)
+- `/data/ssh-keys/client_ecdsa` (generated client key)
+- `/data/ssh-keys/host_key` (generate host key)
 
 #### Ports
 - `2222`
@@ -157,6 +157,9 @@ When `AUTH_TOKEN` is set, NGINX will be configured to authenticate the password 
 #### Options
 - `SSL=0` (disabled by default, set to `1` to enable)
 - `AUTH_TOKEN=<none>` (setup `htpasswd`-based login enforced by nginx)
+- `SELFSIGNED_CURVE=secp384r1` (EC curve to use)
+- `SELFSIGNED_DAYS=365` (SSL certificate expiration)
+- `SELFSIGNED_SUBJECT=/` (SSL subject common name)
 
 #### Paths
 - `/data/ssl-keys/selfsigned.{key,cert}` (keys and certificates)
