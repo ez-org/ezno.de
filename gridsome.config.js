@@ -26,7 +26,8 @@ function addStyleResource (rule) {
 
 module.exports = {
   siteName: 'eznode',
-  siteUrl: 'https://ezno.de',
+  siteUrl: 'https://ezno.de/next',
+  pathPrefix: process.env.PATH_PREFIX || '/',
   titleTemplate: '%s',
   templates: {
     Doc: '/:slug',

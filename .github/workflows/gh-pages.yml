@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - master
+      - next
 
 jobs:
   deploy:
@@ -29,6 +30,7 @@ jobs:
       # Bust cache via ASSETS_DIR to fix https://github.com/gridsome/gridsome/issues/1032
       - run: |
           ASSETS_DIR=a-$(git rev-parse --short HEAD) \
+          PATH_PREFIX=$([ "$GITHUB_REF" == refs/heads/next ] && echo /next)/ \
           npm run build
       - run: cp CNAME dist/
 
@@ -37,3 +39,4 @@ jobs:
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./dist
+          destination_dir: next

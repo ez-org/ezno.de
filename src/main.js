@@ -15,7 +15,7 @@ export default function (Vue, { router, head, isClient, appOptions }) {
   // Add attributes to HTML tag
   head.htmlAttrs = { lang: 'en' }
   
-  head.base = { href: '/' }
+  head.base = { href: process.env.PATH_PREFIX || '/' }
 
   head.meta.push({
     name: 'description',
