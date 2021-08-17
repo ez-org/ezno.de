@@ -4,25 +4,46 @@ date: 2021-03-15
 slug: getting-started
 
 ---
-## 🚀 Quickstart
 
-[Install Docker](https://docs.docker.com/get-docker/) (the only dependency) and start eznode with the data directory mounted to `/data`:
+## 🗒️ Prerequisites
+
+- [Install Docker](https://docs.docker.com/get-docker/)<sup>\*</sup>
+  (on Debian/Ubuntu: `apt install docker.io`)
+- Linux, macOS, Windows or ARMv7/v8 host
+- 5GB of free storage space (10GB if fast-sync is enabled)
+- Patience (~1-2 days for a full sync with i5, SSD, 2GB RAM and 2 CPUs)
+
+
+<sup>\* [Podman](https://podman.io) is supported too. Works in [rootless mode](https://rootlesscontaine.rs/).</sup>
+
+## 🧙 Installation wizard
+
+An installation wizard <abbr title="Textual User Interface">TUI</abbr> is available to help
+prepare eznode's configuration file and the `docker run` command for starting it.
+To use it, run the wizard with the data directory mounted to `/data`:
+
+```bash
+docker run -it --rm --name ez -v ~/eznode:/data eznode/eznode wizard
+```
+
+> Change `~/eznode` if you'd like to store the node's data files elsewhere. On Windows, you can use `$env:AppData\eznode` to store them in `C:\Users\<USER>\AppData\Roaming`.
+
+When the wizard completes, you'll be able to start eznode using the `ez-start` script written to the data directory (e.g. `~/eznode/ez-start`).
+
+For help connecting to the eznode services, see [*Accessing the services*](accessing).
+
+## 🧑‍🔧 Manual setup
+
+eznode can also be easily configured and started manually.
+For example, the following command will setup a pruned Bitcoin Core full node, a personal Electrum server tracking your `<xpub>`, a block explorer and a Tor onion service for secure remote access:
 
 ```bash
 docker run -it --rm --name ez -v ~/eznode:/data eznode/eznode TOR=1 XPUB=<xpub>
 ```
 
-This will setup a pruned Bitcoin Core full node, a personal Electrum server tracking your `<xpub>`, a block explorer and a Tor onion service for secure remote access. All the information you need for accessing them will be shown on startup.
+> On Windows/macOS, you'll need to [publish the ports with `-p`](accessing#connecting-locally) to access them locally.
 
-Change `~/eznode` if you'd like to store the node's data files elsewhere. On Windows, you can use `$env:AppData\eznode` to store them in `C:\Users\<USER>\AppData\Roaming`. They require \~4.8GB of free space.
-
-On Windows/macOS, you'll need to [publish the ports with `-p`](accessing#connecting-locally) to access them locally.
-
-Set `TRUSTED_FASTSYNC=1` to enable the [_trusted_ fast-sync](packages#fast-sync) mode. You should carefully consider the implications and avoid this if possible.
-
-To enable Specter Desktop, set `SPECTER=1`.
-
-To experiment on signet, set `NETWORK=signet`.
+Some other common options are: `AUTH_TOKEN=<password>` to enable [authentication](accessing#authentication), `NETWORK=signet` to experiment on signet, `SPECTER=1` to enable [Specter Desktop](package#specter-desktop) and `TRUSTED_FASTSYNC=1` to enable the the [_trusted_ fast-sync](packages#fast-sync) mode.
 
 Signature verification instructions [are available here](signed-images).
 
@@ -51,12 +72,13 @@ eznode can be configured in several ways:
        PRUNE_UNTIL=2021-01-01
 
    > The config file is `source`ed and may contain variables, bash scripting and comments.
-2. Using a list of `KEY=VALUE` pairs tucked at the end of `docker run`:
+2. Using the [wizard](#wizard) to create the config file.
+3. Using a list of `KEY=VALUE` pairs tucked at the end of `docker run`:
 
    ```bash
    docker run -it ... eznode/eznode NETWORK=signet
    ```
-3. Using the standard `-e`/`--env` and `--env-file` arguments for `docker run`:
+4. Using the standard `-e`/`--env` and `--env-file` arguments for `docker run`:
 
    ```bash
    docker run -it ... -e NETWORK=signet eznode/eznode
