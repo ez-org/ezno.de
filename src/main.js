@@ -15,8 +15,12 @@ export default function (Vue, { router, head, isClient, appOptions }) {
   // Add attributes to HTML tag
   head.htmlAttrs = { lang: 'en' }
   
-  head.base = { href: isClient ? document.querySelector('base').href
-	                       : process.env.PATH_PREFIX || '/' }
+  if (isClient) {
+    const baseTag = document.querySelector('base')
+    head.base = { href: baseTag ? baseTag.href : '/' }
+  } else {
+    head.base = { href: process.env.PATH_PREFIX || '/' }
+  }
 
   head.meta.push({
     name: 'description',

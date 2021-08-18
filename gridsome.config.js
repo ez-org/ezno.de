@@ -24,10 +24,12 @@ function addStyleResource (rule) {
     })
 }
 
+const pathPrefix = process.env.PATH_PREFIX || '/'
+
 module.exports = {
   siteName: 'eznode',
-  siteUrl: 'https://ezno.de/next',
-  pathPrefix: process.env.PATH_PREFIX || '/',
+  siteUrl: `https://ezno.de${pathPrefix}`,
+  pathPrefix,
   titleTemplate: '%s',
   templates: {
     Doc: '/:slug',
