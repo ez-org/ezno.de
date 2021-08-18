@@ -11,10 +11,10 @@ slug: getting-started
   (on Debian/Ubuntu: `apt install docker.io`)
 - Linux, macOS, Windows or ARMv7/v8 host
 - 5GB of free storage space (10GB if fast-sync is enabled)
-- Patience (~1-2 days for a full sync with i5, SSD, 2GB RAM and 2 CPUs)
 
+<!-- - Patience (~1-2 days for a full sync on a PC with SSD, 2GB RAM and 2 CPUs) -->
 
-<sup>\* [Podman](https://podman.io) is supported too. Works in [rootless mode](https://rootlesscontaine.rs/).</sup>
+<small>\* [Podman](https://podman.io) is supported too. Works in [rootless mode](https://rootlesscontaine.rs/).</small>
 
 ## 🧙 Installation wizard
 
@@ -30,11 +30,9 @@ docker run -it --rm --name ez -v ~/eznode:/data eznode/eznode wizard
 
 When the wizard completes, you'll be able to start eznode using the `ez-start` script written to the data directory (e.g. `~/eznode/ez-start`).
 
-For help connecting to the eznode services, see [*Accessing the services*](accessing).
+## ‍👨🏼‍🔧 Manual setup
 
-## 🧑‍🔧 Manual setup
-
-eznode can also be easily configured and started manually.
+eznode can also be easily [configured](getting-started#configuration) and started manually, without the wizard.
 For example, the following command will setup a pruned Bitcoin Core full node, a personal Electrum server tracking your `<xpub>`, a block explorer and a Tor onion service for secure remote access:
 
 ```bash
@@ -42,6 +40,7 @@ docker run -it --rm --name ez -v ~/eznode:/data eznode/eznode TOR=1 XPUB=<xpub>
 ```
 
 > On Windows/macOS, you'll need to [publish the ports with `-p`](accessing#connecting-locally) to access them locally.
+> Refer to [*Accessing the services*](accessing) for more information.
 
 Some other common options are: `AUTH_TOKEN=<password>` to enable [authentication](accessing#authentication), `NETWORK=signet` to experiment on signet, `SPECTER=1` to enable [Specter Desktop](package#specter-desktop) and `TRUSTED_FASTSYNC=1` to enable the the [_trusted_ fast-sync](packages#fast-sync) mode.
 
@@ -72,7 +71,7 @@ eznode can be configured in several ways:
        PRUNE_UNTIL=2021-01-01
 
    > The config file is `source`ed and may contain variables, bash scripting and comments.
-2. Using the [wizard](#wizard) to create the config file.
+2. Using the [wizard](getting-started#installation-wizard) to create a config file.
 3. Using a list of `KEY=VALUE` pairs tucked at the end of `docker run`:
 
    ```bash
